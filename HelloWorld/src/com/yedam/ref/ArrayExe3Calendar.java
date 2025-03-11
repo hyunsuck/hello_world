@@ -1,5 +1,4 @@
 package com.yedam.ref;
-
 public class ArrayExe3Calendar {
 	//2025년 기준으로 월 정보 => 1일의 위치를 반환.
 	public static int getFirstDay(int month) {
@@ -61,7 +60,7 @@ public class ArrayExe3Calendar {
             System.out.print(" " +day);
         }
 		System.out.println(); //줄바꿈
-		int month = 6;
+		int month = 3;
 		int space = getFirstDay(month); //1일의 위치값.
 		int lastDate = getLastDate(month); //마지막날.
 		for (int i = 0; i < space; i++) {
@@ -69,7 +68,10 @@ public class ArrayExe3Calendar {
 		}
 		//날짜출력 "1" -> 1 : Integer.parseInt()
 		for(int d = 1; d <= lastDate; d++) {
-			if(String.valueOf(d).length()==1) {
+			if(d == 21) {
+				System.out.print("  시험");
+			}
+			else if(String.valueOf(d).length()==1) {
 				System.out.print("   " + d);
 			}else if(String.valueOf(d).length()==2) {
 				System.out.print("  " + d);
