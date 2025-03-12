@@ -37,4 +37,8 @@ public class Member {
 		}
 		this.score = score;
 	}
+	// name 필드의 값을 지정.
+	public void setName(String name) {
+		this.name = name;
+	}
 }

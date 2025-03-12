@@ -68,7 +68,7 @@ public class ArrayExe3Calendar {
 		}
 		//날짜출력 "1" -> 1 : Integer.parseInt()
 		for(int d = 1; d <= lastDate; d++) {
-			if(d == 21) {
+			if(month ==3 && d == 21) {
 				System.out.print("  시험");
 			}
 			else if(String.valueOf(d).length()==1) {

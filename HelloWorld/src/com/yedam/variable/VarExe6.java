@@ -33,14 +33,14 @@ public class VarExe6 {
 		Scanner scn = new Scanner(System.in);
 		
 		Member m1 = new Member(); //인스턴스생성.
-		m1.setMember("홍길동", 0);
+		m1.setName("홍길동"); // setter
 		System.out.println(m1.getScore());
 		Member m2 = new Member(); //인스턴스생성.
-		m2.setMember("최민수", 0);
+		m2.setName("최민수");
 		Member m3 = new Member(); //인스턴스생성.
-		m3.setMember("김민수", 0);
+		m3.setName("김민수");
 		Member m4 = new Member(); //인스턴스생성.
-		m4.setMember("박인만", 0);
+		m4.setName("박인만");
 		
 		//배열.
 		Member[] members = {m1,m2,m3,m4};
