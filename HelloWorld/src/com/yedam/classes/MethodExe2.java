@@ -15,7 +15,7 @@ public class MethodExe2 {
         for (int i = 0; i < store.length; i++) {
             if (store[i] == null) {
                 store[i] = prd;
-                // System.out.println("등록완료");
+                 //System.out.println("등록완료");
                 return true;
             }
         }

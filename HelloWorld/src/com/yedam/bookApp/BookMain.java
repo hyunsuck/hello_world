@@ -7,13 +7,23 @@ import java.util.Scanner;
  */
 
 public class BookMain {
-
+	//2. 정적필드. 할당.
+	private static BookMain instance = new BookMain();
+	//1. 생성자 private 선언.
+	private BookMain() {
+		
+	}
+	//3. getInstance() 제공.
+	public static BookMain getInstance() {
+		return instance;
+	}
+	
 	// 저장공간.
-	static Book[] bookStore = new Book[100];
-	static Scanner scn = new Scanner(System.in);
+	 Book[] bookStore = new Book[100];
+	 Scanner scn = new Scanner(System.in);
 
 	// 순번생성.
-	public static int getSequnceNo() {
+	public  int getSequnceNo() {
 		int max = 0;
 		for (int i = 0; i < bookStore.length; i++) {
 			if (bookStore[i] != null //
@@ -26,7 +36,7 @@ public class BookMain {
 
 	// 등록.
 	// 1. 이미 존재하는 제목은 입력불가.
-	public static void add() {
+	public  void add() {
 
 		System.out.print("제목입력>> ");
 		String title = scn.nextLine();
@@ -59,7 +69,7 @@ public class BookMain {
 	} // end of add().
 
 	// 수정.
-	public static void edit() {
+	public  void edit() {
 		// 책제목을 입력하지 않으면 메소드 종료하는 방식.
 		System.out.print("제목입력>> ");
 		String title = scn.nextLine();
@@ -98,7 +108,7 @@ public class BookMain {
 		}
 	} // end of edit().
 
-	public static void delete() {
+	public  void delete() {
 		// 책제목을 입력하지 않으면 반드시 값을 입력받는 방식.
 		String title = "";
 		while (true) {
@@ -125,7 +135,7 @@ public class BookMain {
 		}
 	} // end of delete().
 
-	public static void list() {
+	public  void list() {
 		// 순번정렬.
 		// 순번1 > 순번2, 제외:순번2(null), 순번1(null)
 		Book temp = null;
@@ -152,7 +162,7 @@ public class BookMain {
 		}
 	} // end of list().
 
-	public static void bookInfo() {
+	public  void bookInfo() {
 		// 반드시 값을 입력받도록.
 		String title = "";
 		while (true) {
@@ -174,7 +184,7 @@ public class BookMain {
 	} // end of bookInfo().
 
 	// 도서명으로 조회하는 기능.
-	public static Book searchBook(String title) {
+	public  Book searchBook(String title) {
 		for (int i = 0; i < bookStore.length; i++) {
 			if (bookStore[i] != null //
 					&& bookStore[i].getTitle().equals(title)) {
@@ -184,7 +194,7 @@ public class BookMain {
 		return null; // 조회결과가 없을 경우에는 null을 반환.
 	} // end of searchBook(String title).
 
-	public static void main(String[] args) {
+	public  void main(String[] args) {
 		init();
 		boolean run = true;
 		while (run) {
@@ -218,7 +228,7 @@ public class BookMain {
 		System.out.println("end of prog.");
 	} // end of main().
 
-	public static void init() {
+	public  void init() {
 		bookStore[0] = new Book("이것이자바다", "신용권", "한빛출", 20000, 1);
 		bookStore[1] = new Book("스크립트기초", "박기초", "우리출", 26000, 2);
 		bookStore[2] = new Book("HTML,CSS", "김하늘", "가람출", 25000, 3);
