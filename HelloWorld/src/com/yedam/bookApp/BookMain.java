@@ -13,18 +13,20 @@ public class BookMain {
 
     // ⭐ 사용자 등록 (초기 회원 데이터)
     private void initUsers() {
-        users[0] = new User("admin", "관리자", "1234");
-        users[1] = new User("user1", "김철수", "pass1");
-        users[2] = new User("user2", "이영희", "pass2");
+        users[0] = new User("user01", "홍길동", "1111");
+        users[1] = new User("user02", "김민규", "2222");
+        users[2] = new User("user03", "김민식", "3333");
     }
 
     // ⭐ 로그인 메서드
     private boolean login() {
+    	while(true) {
         System.out.print("아이디 입력: ");
         String id = scn.nextLine();
         System.out.print("비밀번호 입력: ");
         String password = scn.nextLine();
-
+        
+    	
         for (User user : users) {
             if (user != null && user.getUserId().equals(id) && user.getPassword().equals(password)) {
                 System.out.println(user.getUserName() + "님 로그인 성공!");
@@ -32,9 +34,8 @@ public class BookMain {
             }
         }
         System.out.println("로그인 실패. 아이디 또는 비밀번호가 올바르지 않습니다.");
-        return false;
+    	}
     }
-
     // ⭐ main() 실행 (로그인 성공 시)
     public static void main(String[] args) {
         BookMain bookMain = getInstance();
@@ -46,9 +47,11 @@ public class BookMain {
         bookMain.init();
         boolean run = true;
         while (run) {
+        	//예외처리.
             try {
                 System.out.println("1.도서등록 2.수정 3.삭제 4.목록 5.상세조회 9.종료");
                 System.out.print("선택>> ");
+                
                 int menu = Integer.parseInt(bookMain.scn.nextLine());
 
                 switch (menu) {
@@ -71,9 +74,9 @@ public class BookMain {
     }
 
     private void init() {
-        bookStore[0] = new Book("이것이 자바다", "신용권", "한빛출판사", 20000);
-        bookStore[1] = new Book("HTML+CSS 웹 디자인", "이시카와", "영진출판사", 25000);
-        bookStore[2] = new Book("자바의 정석", "남궁성", "도우출판", 30000);
+        bookStore[0] = new Book("이것이자바다", "신용권", "한빛출판사", 20000);
+        bookStore[1] = new Book("HTML+CSS웹디자인", "이시카와", "영진출판사", 25000);
+        bookStore[2] = new Book("자바의정석", "남궁성", "도우출판", 30000);
     }
 
     private void add() {

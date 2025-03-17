@@ -47,6 +47,7 @@ public class FriendExe {
 		Friend f4 = new CompanyFriend ("김무열","010-1111-1111","자회사","인사팀");
 		CompanyFriend cf = (CompanyFriend) f4; //부모클래스 자식클래스에 대입.
 		Friend f5 = new Friend("박성길","010-1111-2222");
+		
 		if(f5 instanceof CompanyFriend) {
 			cf = (CompanyFriend) f5;
 			System.out.println(cf.getCompany());
