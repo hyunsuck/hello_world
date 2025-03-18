@@ -17,7 +17,10 @@ public class Book {
         this.price = price;
     }
 
-    public int getOrderNo() { return orderno; }
+	public Book() {
+	}
+
+	public int getOrderNo() { return orderno; }
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
     public String getCompany() { return company; }
