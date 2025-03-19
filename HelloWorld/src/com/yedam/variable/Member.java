@@ -1,4 +1,5 @@
 package com.yedam.variable;
+
 // public <-> private
 public class Member {
 	// 클래스 : 필드(값을 저장)
@@ -25,8 +26,8 @@ public class Member {
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Member) {
-		Member target = (Member) obj;
-		return this.name.equals(target.name);
+			Member target = (Member) obj;
+			return this.name.equals(target.name);
 		}
 		return false;
 	}
