@@ -24,7 +24,7 @@ public class MethodExe2 {
 	// 초기화(데이터)
 	void init() {			
 		try {
-			FileInputStream fis = new FileInputStream("c:/temp/object.dat");
+			FileInputStream fis = new FileInputStream("c:/temp/message.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			 store= (List<Product>) ois.readObject();
 			 ois.close(); fis.close();
