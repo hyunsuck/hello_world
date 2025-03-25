@@ -1,53 +1,62 @@
 package Coffee;
 
-/**
- * Coffee 클래스는 하나의 메뉴 항목(커피, 스무디, 티 등)을 표현하는 VO (Value Object) 클래스입니다.
- * 메뉴의 ID, 카테고리, 이름, 가격, 주문 수량 정보를 포함하고 있습니다.
- */
+// 메뉴 객체를 표현하는 클래스
 public class Coffee {
-    private int id;          // 메뉴 ID (기본키)
-    private String category; // 메뉴 카테고리 (예: 커피, 스무디, 티)
-    private String name;     // 메뉴 이름 (예: 아메리카노)
-    private int price;       // 메뉴 가격
-    private int quantity;    // 주문 수량 (기본값 0)
+    private int id;             // 메뉴 고유 ID
+    private String name;        // 메뉴 이름
+    private int price;          // 가격
+    private String category;    // 카테고리 (커피, 티, 스무디 등)
+    private int quantity;       // 장바구니에서 사용할 수량
 
-    // 생성자: 메뉴 정보를 받아서 객체 생성
-    public Coffee(int id, String category, String name, int price) {
+    public Coffee() {}
+
+    public Coffee(int id, String name, int price, String category) {
         this.id = id;
-        this.category = category;
         this.name = name;
         this.price = price;
-        this.quantity = 0; // 초기 수량은 0
+        this.category = category;
+        this.quantity = 0;
     }
 
-    // getter 메서드들: 각 필드 값을 외부에서 읽을 수 있도록 함
+    // 총 가격 계산
+    public int getTotalPrice() {
+        return price * quantity;
+    }
+
+    public void addQuantity(int qty) {
+        this.quantity += qty;
+    }
+
+    // getter / setter
     public int getId() { 
     	return id; 
     }
-
-    public String getCategory() { 
-    	return category; 
-    }
-
     public String getName() { 
     	return name; 
     }
-
     public int getPrice() { 
     	return price; 
     }
-
-    public int getQuantity() { 
+    public String getCategory() { 
+    	return category; 
+    }
+    public int getQuantity() {
     	return quantity; 
     }
 
-    // 주문 수량 증가 메서드
-    public void addQuantity(int count) {
-        this.quantity += count;
+    public void setId(int id) { 
+    	this.id = id; 
     }
-
-    // 현재 수량 * 단가 = 총 금액 계산
-    public int getTotalPrice() {
-        return price * quantity;
+    public void setName(String name) { 
+    	this.name = name; 
+    }
+    public void setPrice(int price) { 
+    	this.price = price; 
+    }
+    public void setCategory(String category) { 
+    	this.category = category; 
+    }
+    public void setQuantity(int quantity) { 
+    	this.quantity = quantity; 
     }
 }
