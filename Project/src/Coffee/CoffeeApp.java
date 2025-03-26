@@ -1,67 +1,88 @@
-package Coffee;
+package Coffee; // 패키지 선언
 
-import java.util.*;
+import java.util.*; // 유틸리티 클래스 임포트
 
-public class CoffeeApp {
-    // 대기번호를 저장하는 정적 변수입니다. 프로그램 재시작 시 초기화되며, 영구 저장하려면 파일이나 DB 저장이 필요합니다.
-    static int waitNumber = 1;
+public class CoffeeApp { // 메인 콘솔 앱 클래스
+    static int waitNumber = 1; // 대기번호 정적 변수 (프로그램 내에서 증가)
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // 사용자 입력용 스캐너
         CoffeeDAO dao = new CoffeeDAO(); // DB 연동 DAO 객체 생성
-        List<Coffee> cart = new ArrayList<>(); // 장바구니 역할을 하는 리스트입니다. Coffee 객체에 수량 정보도 포함되어 있어 이 구조로 장바구니 기능을 통합합니다.
+        List<Coffee> cart = new ArrayList<>(); // 장바구니 역할을 하는 리스트
 
-        boolean run = true;
+        boolean run = true; // 프로그램 실행 여부
         
-        while (run) {
-            List<String> categories = dao.getCategories(); // DB에서 카테고리 목록 조회
-
-            // 메인 메뉴 출력
-            System.out.println("==== [메뉴 선택] ====");
-            for (int i = 0; i < categories.size(); i++) {
-                System.out.printf("%d. %s\n", i + 1, categories.get(i));
-            }
-            int cartMenu = categories.size() + 1;
-            int payMenu = categories.size() + 2;
-            System.out.println(cartMenu + ". 장바구니 확인/수정");
-            System.out.println(payMenu + ". 결제");
-            System.out.println("9. 종료");
-            System.out.print("선택>> ");
-
-            int menu = 9;
-            while (true) {
-                try {
-                    menu = Integer.parseInt(scanner.nextLine()); // 예외처리 포함한 메뉴 선택
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("숫자만 입력하세요.");
-                }
-            }
-
-            switch (menu) {
-                case 1, 2, 3:  // 카테고리 메뉴 처리 (예: 커피, 스무디, 티)
-                    if (menu <= categories.size()) {
-                        String selectedCategory = categories.get(menu - 1);
-                        List<Coffee> menuList = dao.getMenuByCategory(selectedCategory);
-                        MenuSelection(scanner, cart, menuList, selectedCategory);
-                    }
-                    break;
-                case 4: // 장바구니 확인/수정
-                    CartMenu(scanner, cart, dao);
-                    break;
-                case 5: // 결제 진행
-                    Payment(scanner, cart, dao);
-                    break;
-                case 9: // 종료
-                    run = false;
-                    System.out.println("프로그램을 종료합니다.");
-                    break;
-                default:
-                    System.out.println("올바른 메뉴를 선택하세요.");
-            }
+        while(run) {
+        //주문 방식 추가
+        System.out.println("==== 주문 방법 선택 ====");
+        System.out.println("1. 매장 주문");
+        System.out.println("2. 포장 주문");
+        System.out.println("9. 종료");
+        System.out.print("선택>> ");
+        int orderType = scanner.nextInt();
+        scanner.nextLine(); // 버퍼 비우기	
+        
+        if (orderType == 9) {
+            run = false;
+            System.out.println("프로그램을 종료합니다.");
+            break;
+        } else if (orderType != 1 && orderType != 2) {
+            System.out.println("올바른 주문 방식을 선택해주세요.");
+            continue;
+        }
+        
+        
+        	boolean ordering = true;
+        	while (ordering) {
+        		List<String> categories = dao.getCategories(); // DB에서 카테고리 목록 조회
+            
+        		// 메인 메뉴 출력
+        		System.out.println("==== [메뉴 선택] ====");
+	            for (int i = 0; i < categories.size(); i++) {
+	                System.out.printf("%d. %s\n", i + 1, categories.get(i));
+	            }
+	            int cartMenu = categories.size() + 1; // 장바구니 메뉴 번호
+	            int payMenu = categories.size() + 2; // 결제 메뉴 번호
+	            System.out.println(cartMenu + ". 장바구니 확인/수정");
+	            System.out.println(payMenu + ". 결제");
+	            System.out.println("9. 종료");
+	            System.out.print("선택>> ");
+	
+	            int menu = 9; // 기본값은 종료
+	            while (true) {
+	                try {
+	                    menu = Integer.parseInt(scanner.nextLine()); // 숫자 입력 처리
+	                    break;
+	                } catch (NumberFormatException e) {
+	                    System.out.println("숫자만 입력하세요.");
+	                }
+	            }
+	
+	            switch (menu) {
+	                case 1, 2, 3: // 카테고리 메뉴 처리
+	                    if (menu <= categories.size()) {
+	                        String selectedCategory = categories.get(menu - 1); // 선택한 카테고리
+	                        List<Coffee> menuList = dao.getMenuByCategory(selectedCategory); // 해당 메뉴 목록 불러오기
+	                        MenuSelection(scanner, cart, menuList, selectedCategory); // 메뉴 선택 함수 호출
+	                    }
+	                    break;
+	                case 4: // 장바구니 확인/수정
+	                    CartMenu(scanner, cart, dao);
+	                    break;
+	                case 5: // 결제 진행
+	                    Payment(scanner, cart, dao);
+	                    break;
+	                case 9: // 종료
+	                    run = false;
+	                    System.out.println("프로그램을 종료합니다.");
+	                    break;
+	                default:
+	                    System.out.println("올바른 메뉴를 선택하세요.");
+	            }
+	        }
         }
 
-        dao.close(); // DB 종료
+        dao.close(); // DB 연결 종료
         scanner.close(); // 스캐너 종료
     }
 
@@ -70,30 +91,30 @@ public class CoffeeApp {
         System.out.println("[" + category + " 메뉴]");
         for (int i = 0; i < menu.size(); i++) {
             Coffee item = menu.get(i);
-            System.out.printf("%d. %s - %d원\n", i + 1, item.getName(), item.getPrice());
+            System.out.printf("%d. %s - %d원\n", i + 1, item.getName(), item.getPrice()); // 메뉴 출력
         }
 
         while (true) {
             System.out.print("메뉴 번호 선택: ");
-            int menuChoice = scanner.nextInt();
+            int menuChoice = scanner.nextInt(); // 메뉴 번호 입력
 
             if (menuChoice >= 1 && menuChoice <= menu.size()) {
-                Coffee selected = menu.get(menuChoice - 1);
+                Coffee selected = menu.get(menuChoice - 1); // 선택된 메뉴
                 System.out.print("수량 입력: ");
-                int qty = scanner.nextInt();
+                int qty = scanner.nextInt(); // 수량 입력
 
-                boolean alreadyInCart = false;
+                boolean alreadyInCart = false; // 이미 장바구니에 있는지 확인
                 for (Coffee item : cart) {
                     if (item.getId() == selected.getId()) {
-                        item.addQuantity(qty);
+                        item.addQuantity(qty); // 수량 추가
                         alreadyInCart = true;
                         break;
                     }
                 }
 
                 if (!alreadyInCart) {
-                    selected.addQuantity(qty);
-                    cart.add(selected);
+                    selected.addQuantity(qty); // 수량 설정
+                    cart.add(selected); // 장바구니에 추가
                 }
 
                 System.out.println("장바구니에 담겼습니다.");
@@ -117,7 +138,7 @@ public class CoffeeApp {
                 Coffee item = cart.get(i);
                 System.out.printf("%d. %s - %s x %d = %d원\n",
                     i + 1, item.getCategory(), item.getName(),
-                    item.getQuantity(), item.getTotalPrice());
+                    item.getQuantity(), item.getTotalPrice()); // 항목 출력
             }
             System.out.println("0. 수량 수정 / 삭제");
             System.out.println("1. 결제 진행");
@@ -139,19 +160,19 @@ public class CoffeeApp {
                 int newQty = scanner.nextInt();
 
                 if (newQty <= 0) {
-                    cart.remove(idx - 1);
+                    cart.remove(idx - 1); // 삭제
                     System.out.println("항목이 삭제되었습니다.");
                 } else {
-                    selected.addQuantity(-selected.getQuantity());
-                    selected.addQuantity(newQty);
+                    selected.addQuantity(-selected.getQuantity()); // 기존 수량 제거 후
+                    selected.addQuantity(newQty); // 새 수량 설정
                     System.out.println("수량이 수정되었습니다.");
                 }
 
             } else if (subChoice == 1) {
-                Payment(scanner, cart, dao);
+                Payment(scanner, cart, dao); // 결제 처리 호출
                 break;
             } else if (subChoice == 2) {
-                break;
+                break; // 이전 메뉴로 이동
             } else {
                 System.out.println("잘못된 입력입니다.");
             }
@@ -170,7 +191,7 @@ public class CoffeeApp {
         for (Coffee item : cart) {
             System.out.printf("%s - %s x %d = %d원\n",
                 item.getCategory(), item.getName(),
-                item.getQuantity(), item.getTotalPrice());
+                item.getQuantity(), item.getTotalPrice()); // 항목 출력
             total += item.getTotalPrice();
         }
 
@@ -193,12 +214,12 @@ public class CoffeeApp {
             System.out.print("번호 선택: ");
             int postPay = scanner.nextInt();
             if (postPay == 2) {
-            	System.out.println("종료하기");
+                System.out.println("종료하기");
                 dao.close();
                 scanner.close();
                 System.exit(0);
             } else {
-                cart.clear();
+                cart.clear(); // 장바구니 초기화 후 다시 시작
             }
         }
     }
