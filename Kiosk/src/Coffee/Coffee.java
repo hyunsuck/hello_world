@@ -28,7 +28,7 @@ public class Coffee {
     public void addQuantity(int qty) {
         this.quantity += qty;
     }
-
+    
     // getter / setter 메서드
 
     public int getId() { // ID 반환

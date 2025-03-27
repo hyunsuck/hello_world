@@ -1,7 +1,15 @@
 package Coffee; // 패키지 선언
 
-import java.sql.*; // JDBC 관련 클래스 임포트
-import java.util.*; // 유틸리티 클래스 (List 등) 임포트
+// JDBC 관련 클래스 임포트
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+// 유틸리티 클래스 (List 등) 임포트
+import java.util.ArrayList;
+import java.util.List;
 
 // 커피 데이터베이스 접근 객체 클래스
 public class CoffeeDAO {
@@ -14,7 +22,7 @@ public class CoffeeDAO {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             // DB에 연결 (주소, ID, 비밀번호 지정)
             conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:xe", // DB 주소
+                "jdbc:oracle:thin:@192.168.0.39:1521:xe", // DB 주소
                 "scott", // 사용자 ID
                 "tiger"  // 비밀번호
             );

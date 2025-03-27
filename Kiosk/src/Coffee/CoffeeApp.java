@@ -1,6 +1,9 @@
 package Coffee; // 패키지 선언
 
-import java.util.*; // 유틸리티 클래스 임포트
+// 유틸리티 클래스 임포트
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class CoffeeApp { // 메인 콘솔 앱 클래스
     static int waitNumber = 1; // 대기번호 정적 변수 (프로그램 내에서 증가)
@@ -12,7 +15,7 @@ public class CoffeeApp { // 메인 콘솔 앱 클래스
 
         boolean run = true; // 프로그램 실행 여부
         
-        while(run) {
+        while(run) {//
         //주문 방식 추가
         System.out.println("==== 주문 방법 선택 ====");
         System.out.println("1. 매장 주문");
@@ -31,6 +34,7 @@ public class CoffeeApp { // 메인 콘솔 앱 클래스
             System.out.println("올바른 주문 방식을 선택해주세요.");
             continue;
         }
+        
         
         
         	boolean ordering = true;
