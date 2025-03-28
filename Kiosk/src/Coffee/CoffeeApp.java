@@ -15,7 +15,7 @@ public class CoffeeApp { // 메인 콘솔 앱 클래스
 
         boolean run = true; // 프로그램 실행 여부
         
-        while(run) {//
+        while(run) {
         //주문 방식 추가
         System.out.println("==== 주문 방법 선택 ====");
         System.out.println("1. 매장 주문");
