@@ -11,8 +11,8 @@
    		   ,content
    		   ,write_date 
    	from tbl_board
+   	order by board_no desc
    </select>
-   
    <!-- 등록. -->
    <insert id = "insertBoard" parameterType="board">
     insert into tbl_board(board_no, title, content, writer)
@@ -32,4 +32,14 @@
    delete tbl_board
    where board_no = #{boardNo}
    </delete>
+   <!-- 단건조회 -->
+	<select id="selectOne" parameterType="int" resultType="com.yedam.vo.BoardVO">
+    select board_no,
+           title,
+           writer,
+           content,
+           write_date
+    from tbl_board
+    where board_no = #{boardNo}
+	</select>
   </mapper>
