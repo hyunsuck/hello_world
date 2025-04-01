@@ -8,8 +8,8 @@
   	<servlet-class>com.yedam.web.MainServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>main</servlet-name>
-  	<url-pattern>/mainsevlet</url-pattern>
+   <servlet-name>main</servlet-name>
+   <url-pattern>/mainservlet</url-pattern>
   </servlet-mapping>
   
   <!--  MVC패턴(Controller:서블릿 -->

@@ -36,8 +36,13 @@ public class AddBoardControl implements Control {
     		SqlSession sqlSession = DataSource.getInstance().openSession(true); //openSession(true) 자동커밋.
     		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
     		int r = mapper.insertBoard(board);
-    		
-    		resp.sendRedirect("boardList.do"); //요청재지정.
+    		if(r > 0) {
+    			resp.sendRedirect("boardList.do"); //요청재지정.		
+    		} else {
+                // 실패 → 다시 작성폼으로 이동
+    			req.setAttribute("error", "수정 실패");
+                req.getRequestDispatcher("/WEB-INF/views/modifyBoard.jsp").forward(req, resp);
+            }
     	}
     }
 }
