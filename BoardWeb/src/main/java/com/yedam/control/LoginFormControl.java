@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class DeleteFormControl implements Control {
+public class LoginFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 삭제화면(deleteForm.jsp)
-
+		// 로그인 화면 open. WEB-INF/views/loginForm.jsp
+		req.getRequestDispatcher("WEB-INF/views/loginForm.jsp")//
+				.forward(req, resp);
 	}
 
 }

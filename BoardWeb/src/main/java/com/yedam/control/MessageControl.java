@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class DeleteFormControl implements Control {
+public class MessageControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 삭제화면(deleteForm.jsp)
-
+		// TODO Auto-generated method stub
+		req.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(req, resp);
 	}
 
 }

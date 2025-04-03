@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- Page content-->
-                <div class="container-fluid">
-                </div>
+</div>
             </div>
         </div>
         <!-- Bootstrap core JS-->
@@ -15,3 +9,4 @@
         <script src="js/scripts.js"></script>
     </body>
 </html>
+    

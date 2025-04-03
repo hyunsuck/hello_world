@@ -9,16 +9,16 @@ import java.util.List;
 
 import com.yedam.vo.BoardVO;
 
-public class BoardDAO extends DAO{
-	
-	public List<BoardVO> boardList(){
+public class BoardDAO extends DAO {
+
+	public List<BoardVO> boardList() {
 		List<BoardVO> list = new ArrayList<>();
 		Connection conn = getConnect();
 		try {
 			PreparedStatement psmt //
 					= conn.prepareStatement("select * from tbl_board");
-		ResultSet rs = psmt.executeQuery();
-		while (rs.next()) {
+			ResultSet rs = psmt.executeQuery();
+			while (rs.next()) {
 				BoardVO board = new BoardVO();
 				board.setBoardNo(rs.getInt("board_no"));
 				board.setContent(rs.getString("content"));
@@ -38,5 +38,4 @@ public class BoardDAO extends DAO{
 		}
 		return list;
 	}
-
 }

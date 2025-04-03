@@ -18,7 +18,7 @@ public interface BoardMapper {
 	//삭제.
 	int deleteBoard(int boardNo);
 	//상세조회.
-	BoardVO selectOne(int boardNO);
+	BoardVO selectOne(int boardNo);
 	//전체건수.
 	int selectTotal(SearchDTO search);
 }
