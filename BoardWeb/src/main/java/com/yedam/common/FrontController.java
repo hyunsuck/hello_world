@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddReplyControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.DeleteBoardControl;
@@ -23,6 +24,8 @@ import com.yedam.control.MainControl;
 import com.yedam.control.MessageControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyFormControl;
+import com.yedam.control.RemoveReplyControl;
+import com.yedam.control.ReplyListControl;
 import com.yedam.control.AuthentifyControl;
 import com.yedam.control.SignUpControl;
 // *.do의 요청에 실행.
@@ -55,8 +58,12 @@ public class FrontController extends HttpServlet {
 		// 회원가입.
 		map.put("/signForm.do", new SignUpControl()); // 회원가입화면.
 		map.put("/signUp.do", new SignUpControl()); // 회원등록.
-		//js코드.
+		//자바스크립트연습.
 		map.put("/javascript.do", new JSControl());
+		//댓글관련.
+		map.put("/replyList.do", new ReplyListControl()); //댓글데이터.
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
 	}
 
 	// service.

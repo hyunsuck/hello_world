@@ -52,8 +52,42 @@
 
   </table>
 </form>
-<p><a href='boardList.do'>목록이동</a></p>
+<!--  댓글관련. -->
+<style>
+  div.reply span {
+    display: inline-block;
+  }
+  div.reply ul {
+    list-style-type: none;
+  }
+</style>
+<!-- 등록 -->
+<div class="header">
+	<img class="iconimage" src="images/레드향.jpg">
+	<input class="col-sm-8" id="reply">
+	<button class="col-sm-3 btn btn-primary addReply">댓글등록</button>
+</div>
+<div class="container reply">
+  <!-- 등록. -->
+
+  <!-- 목록. -->
+  <div class="content">
+    <ul>
+      <li>
+        <span class="col-sm-2">글번호</span>
+        <span class="col-sm-5">내용</span>
+        <span class="col-sm-2">작성자</span>
+        <span class="col-sm-2">삭제</span>
+      </li>
+    </ul>
+  </div>
+  <!-- 페이징. -->
+</div>
+ 
+<!--<p><a href='boardList.do'>목록이동</a></p>-->
 <script>
+  const bno = "${board.boardNo}";
+  const replyer = "${logId}";
   // 삭제버튼에 이벤트등록.
   document.querySelector('button.btn.btn-danger')
     .addEventListener('click', deleteFnc);
@@ -62,3 +96,5 @@
     location.href = 'deleteForm.do?bno=${board.boardNo}'; // 삭제화면 -> 삭제처리.
   }
 </script>
+<script src="js/boardService.js"></script>
+<script src="js/board1.js"></script>
