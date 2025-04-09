@@ -19,6 +19,7 @@ public class RLDatatable implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/json; charset=utf-8");		
 		// { "data": [ [21],'댓글내용','user01','날짜'],[],[]...[] ]}
 		String bno = req.getParameter("bno");
 		ReplyService svc = new ReplyServiceImpl();

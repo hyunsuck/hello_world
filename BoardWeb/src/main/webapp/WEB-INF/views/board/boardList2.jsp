@@ -9,9 +9,9 @@
 
 <!-- webapp/WEB-INF/views/boardList.jsp -->
 <!-- blist, paging, searchCondition, keyword -->
-<h3>게시글 목록(boardList.jsp)</h3>
+<h3>게시글 목록(boardList2.jsp)</h3>
 <!-- 검색조건. -->
-<form action="boardList.do">
+<form action="boardList2.do">
   <div class="row">
     <div class="col-sm-4">
       <select name="searchCondition" class="form-control">
@@ -54,4 +54,5 @@
 <!-- paging 처리. -->
 <script>
    new DataTable('#example');
+   
 </script>

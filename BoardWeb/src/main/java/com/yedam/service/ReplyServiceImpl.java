@@ -44,7 +44,7 @@ public class ReplyServiceImpl implements ReplyService{
 
 	@Override
 	public List<Map<String, Object>> replyListForDT(int boardNo) {
-		return null;
+	    return mapper.selectListForDT(boardNo); // 매퍼의 메서드 호출
 	}
 
 }

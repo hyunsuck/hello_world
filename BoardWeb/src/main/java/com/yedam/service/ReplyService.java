@@ -15,5 +15,7 @@ public interface ReplyService {
 	// 페이징 계산.
 	int getTotalCnt(int boardNo);
 	// Datatable용 데이터.
+	
 	List<Map<String, Object>> replyListForDT(int boardNo);
+    
 }
