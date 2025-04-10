@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class EventFormControl implements Control {
+public class ChartControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		req.getRequestDispatcher("WEB-INF/views/etc/event.jsp")//
-				.forward(req, resp);
+        // tiles definition name = etc/chart
+        req.getRequestDispatcher("etc/chart.tiles").forward(req, resp);
 	}
-
 }

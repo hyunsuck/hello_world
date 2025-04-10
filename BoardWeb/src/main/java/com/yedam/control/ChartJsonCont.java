@@ -14,19 +14,18 @@ import com.yedam.common.Control;
 import com.yedam.service.EtcService;
 import com.yedam.service.EtcServiceImpl;
 
-public class EventListControl implements Control {
+public class ChartJsonCont implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/json;charset=utf-8");
-
-		// 목록.
-		EtcService svc = new EtcServiceImpl();
-		List<Map<String, Object>> list = svc.eventList();
-
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		// TODO Auto-generated method stub\
+		resp.setContentType("text/json; charset=utf-8");
+		EtcService svc =  new EtcServiceImpl();
+		List<Map<String, Object>> list = svc.cntPerWriter();
+		//출력결과.
+		Gson gson= new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(list);
-
+		
 		resp.getWriter().print(json);
 
 	}
