@@ -1,6 +1,11 @@
 /**
- * json.js
+ * js/array2.js
  */
+const numAry = [10, 17, 23, 26, 49];
+let filterAry = numAry.filter(function(item, idx, ary) {
+	return item % 2 == 0; // true값을 반환하는 item을 배열로 저장.;
+});
+console.log("짝수 필터:", filterAry);
 
 const jsonStr = `[{"id":1,"first_name":"Genevieve","last_name":"David","email":"gdavid0@phoca.cz","gender":"Female","salary":3541},
 {"id":2,"first_name":"George","last_name":"Storks","email":"gstorks1@upenn.edu","gender":"Female","salary":5772},
@@ -18,24 +23,43 @@ const jsonStr = `[{"id":1,"first_name":"Genevieve","last_name":"David","email":"
 {"id":14,"first_name":"Drew","last_name":"Robroe","email":"drobroed@instagram.com","gender":"Male","salary":6973},
 {"id":15,"first_name":"Maximilian","last_name":"Stocken","email":"mstockene@ca.gov","gender":"Male","salary":2397}]`;
 
-let obj = JSON.parse(jsonStr); // json문자열 -> object 변경.
-let str = JSON.stringify(obj); // object -> json문자열 변경.
-console.log(obj[2].last_name);
+// {id, first_name ....}
+const jsonAry = JSON.parse(jsonStr);
+filterAry = jsonAry.filter(item => item.gender == 'Female' && item.salary >= 5000);
+console.log("조건 필터:", filterAry);
 
-// 한건 데이터를 매개값으로 tr을 생성하는 함수.
-function makeRow(emp = {id, first_name, last_name, email, gender, salary}) {
-	const fields = ['id', 'first_name', 'last_name', 'email'];
-	let tr = document.createElement('tr'); //<tr></tr>
-	for (let i= 0; i< fields.length; i++) {
-		let td = document.createElement('td'); // <td></td>
-		td.innerHTML = emp[fields[i]]; // <td>1</td>
-		tr.appendChild(td); //<tr><td>1</td><td>Matthieu</td></tr>
+// reduce()
+console.clear();
+let result = [10, 23, 34, 48, 51].reduce(function(acc, item) {
+	console.log(acc, item);
+	if(item > 30) {
+		acc.push(item);
 	}
-	return tr;
-}
+	return acc; // acc값으로 활용.
+}, []);
+console.log('result: ', result);
+console.clear();
+let list = document.querySelector('#list'); // <ul id="list" />
 
-//화면출력.
-obj.forEach(function(item, idx, ary){
-	let tr= makeRow(item);
-	document.querySelector('tbody#target').appendChild(tr);
-})
+[10, 23, 34, 48, 51].reduce((acc, item) => {
+	let li = document.createElement('LI');
+	li.innerHTML = item; // <li>10</li>
+	acc.appendChild(li);
+	
+	return acc;
+}, list);
+
+const ary = [
+	{name: "홍길동", phone: "010-1111-2222"},
+	{name: "최길동", phone: "010-1111-3333"},
+	{name: "박길동", phone: "010-1111-4444"},
+	{name: "김길동", phone: "010-1111-5555"}
+]
+// ul의 요소로 이름 - 연착처 출력.
+const ul = document.querySelector('#list');
+
+    ary.forEach(person => {
+      let li = document.createElement('li');
+      li.textContent = `${person.name} - ${person.phone}`;
+      ul.appendChild(li);
+    });
